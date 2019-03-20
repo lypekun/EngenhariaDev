@@ -15,8 +15,8 @@ Trabalho de desenvolvimento para a disciplina de Engenharia de Software
 
 * `git clone https://github.com/lypekun/EngenhariaDev.git`
 * `composer install`
-* `php artisan key:generate`
 * `Create a database and put it in .env`
+* `php artisan key:generate`
 * `php artisan migrate` Isso vai criar as tabelas
 * `php artisan db:seed` Isso vai popular algumas tabelas como a de Usuários.
 * `php artisan serve Para ligar o servidor em : http://localhost:8000/`
