@@ -10,6 +10,13 @@
             <hr>
             <br><br><br>
             <h3 style="text-align:center;">Lista de usuários</h3>
+            <div class="row">
+        
+
+        <div class="col-md-2 col-md-offset-5">
+            <a href="{{ url('/usuarios/create') }}" class="btn btn-success btn-block" title="Add New Condominio"><i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Novo</a>
+        </div>
+    </div>
 
             
 <div class="row">

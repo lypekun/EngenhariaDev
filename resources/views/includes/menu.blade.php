@@ -1,4 +1,4 @@
-<nav style="border-color:#ffffff; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 30px 0 rgba(0, 0, 0, 0.19);" class="navbar navbar-expand-lg navbar-static-top navbar-light bg-light">
+<nav style="border-color:#ffffff; box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 30px 0 rgba(0, 0, 0, 0.19);" class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
 
                 <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
@@ -17,21 +17,27 @@
         <a class="nav-link" href="{{ url('/') }}">Início</a>
       </li>
       
-      <li class="nav-item">
-        <a class="nav-link" href="#">LINK1</a>
-      </li>
+      
    
-      
-      
+      @auth
+      @if(Auth::user()->permissao == 'administrador')
       <li class="nav-item">
-        <a class="nav-link" href="#">Menu Cliente</a>
+        <a class="nav-link" href="#"> Menu Administrador </a>
       </li>
-    
+      @endif
+      @if(Auth::user()->permissao == 'cliente' || Auth::user()->permissao == 'administrador')
+      <li class="nav-item">
+        <a class="nav-link" href="#"> Menu Cliente </a>
+      </li>
+      @endif
+      @if(Auth::user()->permissao == 'supervisor' || Auth::user()->permissao == 'administrador')
+      <li class="nav-item">
+        <a class="nav-link" href="#"> Menu Supervisor </a>
+      </li>
+      @endif
+      @endauth
 
-      <li class="nav-item">
-        <a class="nav-link" href="#">Menu Supervisor</a>
-      </li>
-    
+      
       <li class="nav-item">
         <a class="nav-link" href="#">Sobre nós</a>
       </li>
@@ -40,34 +46,35 @@
                     <!-- Right Side Of Navbar -->
     <ul class="navbar-nav navbar-right">
         <!-- Authentication Links -->
-         @if (Auth::guest())
-    <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Login</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
-        @else
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                   {{ Auth::user()->name }} 
-                </a>
+        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                           <!-- @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif -->
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->nome }}
+                                </a>
 
-                  <ul class="dropdown-menu" role="menu">
-                      <li>
-                        <a href="{{ url('/profile') }}">Perfil</a>
-                      </li>
-                      <div class="dropdown-divider"></div>
-                      <li>
-                          <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
-                          </a>
+                                        {{ __('Logout') }}
+                                    </a>
 
-                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                          </form>
-                      </li>
-                  </ul>
-            </li>
-           @endif
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
     </ul>
 
 

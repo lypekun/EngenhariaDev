@@ -22,6 +22,7 @@ Route::group(['middleware' => 'App\Http\Middleware\Admin'], function()
 {	
 	Route::resource('/admin','Admin\AdminController');
 	Route::get('/home', 'HomeController@index');
+	Route::resource('usuarios', 'UsuarioController');
 
 });
 

@@ -17,7 +17,7 @@ class Supervisor
     {
         if ($request->user()->permissao == 'cliente')
         {
-            return redirect('cliente');
+            return redirect('/cliente');
         }
 
         return $next($request);

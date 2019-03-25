@@ -5,6 +5,8 @@
     transform: translatex(-50%);
   }
 }
+
+html,body{min-height:100%}
 body{
    background-image: url(asset('img/background.png'));
   
@@ -29,7 +31,12 @@ footer{
 	color:#b7b7b7;
 }
 
-
+.centered-modal.in {
+    display: flex !important;
+}
+.centered-modal .modal-dialog {
+    margin: auto;
+}
 
 .stylish-input-group .input-group-addon{
     background: white !important; 

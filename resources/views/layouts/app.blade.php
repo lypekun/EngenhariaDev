@@ -9,22 +9,22 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+   
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!--<link href="{{ asset('css/style.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     
 </head>
 <body>
-    <div id="container">
+
+    <div id="app">
 
         @include('includes.menu')
         
@@ -38,7 +38,18 @@
     <hr style="padding-top:50px;">
     <p style="text-align:center;"> Lype Desenvolvimentos LTDA. TM.</p>
 <!-- Scripts -->
+
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/condominio.js') }}"></script>
+    <script type="text/javascript">
+    
+$(document).on('click', '.show-modal', function() {
+  $('#show').modal('show');
+  $('#nome').text($(this).data('nome'));
+  $('#cargo').text($(this).data('cargo'));
+  });
+</script>
+    <!-- <script src="{{ asset('js/bootstrap.min.js') }}"></script> -->
+    
+
 </body>
 </html>
