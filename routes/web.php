@@ -17,4 +17,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//ROTAS DE ADMIN
+Route::group(['middleware' => 'App\Http\Middleware\Admin'], function()
+{	
+	Route::resource('/admin','Admin\AdminController');
+	Route::get('/home', 'HomeController@index');
+
+});
+
+//ROTAS DE CLIENTE
+Route::group(['middleware' => 'App\Http\Middleware\Cliente'], function()
+{	
+	Route::resource('/cliente','Cliente\ClienteController');
+});
+
+//ROTAS DE SUPERVISOR
+Route::group(['middleware' => 'App\Http\Middleware\Supervisor'], function()
+{	
+	Route::resource('/supervisor','Supervisor\SupervisorController');
+});
+
